@@ -30,6 +30,8 @@ authMiddleware: function({ req }) {
   try {
     // decode and attach user data to request object
     const { data } = jwt.verify(token, secret, { maxAge: expiration });
+    //append to request object the user property with value of the decoded token
+    //from context.user
     req.user = data;
   } catch {
     console.log('Invalid token');
